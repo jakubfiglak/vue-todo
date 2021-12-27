@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <Header @theme-toggle="toggleTheme" :theme="userTheme" />
+    <todos />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Header from './components/Header.vue';
+import Todos from './components/Todos.vue';
 import { Theme } from './types';
 
 type Data = {
@@ -17,6 +19,7 @@ export default Vue.extend({
   name: 'App',
   components: {
     Header,
+    Todos,
   },
   mounted() {
     const initUserTheme = this.getMediaPreference();
@@ -115,20 +118,24 @@ h6 {
 
 :root {
   --bright-blue: hsl(220, 98%, 61%);
-  --check-background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+  --check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   --todo-background: hsl(0, 0%, 98%);
   --body-background: hsl(236, 33%, 92%);
   --light-grayish-blue: hsl(233, 11%, 84%);
   --dark-grayish-blue: hsl(236, 9%, 61%);
   --very-dark-grayish-blue: hsl(235, 19%, 35%);
+  --text-color: var(--very-dark-grayish-blue);
   --heading-color: hsl(0, 0%, 100%);
   --desktop-header-background: url('./assets/bg-desktop-light.jpg');
   --mobile-header-background: url('./assets/bg-mobile-light.jpg');
+  --box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  --border-radius: 5px;
 }
 
 :root.dark-theme {
   --body-background: hsl(235, 21%, 11%);
   --todo-background: hsl(235, 24%, 19%);
+  --text-color: hsl(234, 39%, 85%);
   --light-grayish-blue: hsl(234, 39%, 85%);
   --light-grayish-blue-hover: hsl(236, 33%, 92%);
   --dark-grayish-blue: hsl(234, 11%, 52%);
