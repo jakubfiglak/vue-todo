@@ -49,6 +49,7 @@ fieldset {
 }
 
 input[type='text'] {
+  width: 100%;
   background: none;
   border: 0;
   color: var(--text-color);
