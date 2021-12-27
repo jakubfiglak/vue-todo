@@ -2,7 +2,7 @@
   <layout-content-wrapper>
     <form @submit.prevent="addTodo">
       <fieldset>
-        <input type="checkbox" name="completed" id="completed" v-model="completed" />
+        <checkbox name="completed" :checked="completed" v-model="completed" />
         <input type="text" name="text" id="text" placeholder="Create new todo..." v-model="text" />
       </fieldset>
     </form>
@@ -12,10 +12,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import LayoutContentWrapper from './LayoutContentWrapper.vue';
+import Checkbox from './Checkbox.vue';
 
 export default Vue.extend({
   name: 'TodoForm',
-  components: { LayoutContentWrapper },
+  components: { LayoutContentWrapper, Checkbox },
   data() {
     return {
       completed: false,
@@ -45,19 +46,6 @@ fieldset {
   padding: 1.8rem 2rem;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
-}
-
-input[type='checkbox'] {
-  cursor: pointer;
-  appearance: none;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  border: 1px solid var(--very-dark-grayish-blue);
-}
-
-input[type='checkbox']:checked {
-  background: url(../assets/icon-check.svg) no-repeat center, var(--check-background);
 }
 
 input[type='text'] {
