@@ -1,20 +1,23 @@
 <template>
   <div id="app">
-    <h1>Hello</h1>
-    <button @click="toggleTheme">Toggle Theme</button>
+    <Header @theme-toggle="toggleTheme" :theme="userTheme" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import Header from './components/Header.vue';
+import { Theme } from './types';
 
-type Theme = 'light-theme' | 'dark-theme';
 type Data = {
   userTheme: Theme;
 };
 
 export default Vue.extend({
   name: 'App',
+  components: {
+    Header,
+  },
   mounted() {
     const initUserTheme = this.getMediaPreference();
     this.setTheme(initUserTheme);
@@ -75,7 +78,6 @@ html {
 }
 
 body {
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-size: 1.8rem;
   font-family: 'Josefin Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans',
@@ -112,7 +114,6 @@ h6 {
 }
 
 :root {
-  --background-color: white;
   --bright-blue: hsl(220, 98%, 61%);
   --check-background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
   --todo-background: hsl(0, 0%, 98%);
@@ -120,10 +121,12 @@ h6 {
   --light-grayish-blue: hsl(233, 11%, 84%);
   --dark-grayish-blue: hsl(236, 9%, 61%);
   --very-dark-grayish-blue: hsl(235, 19%, 35%);
+  --heading-color: hsl(0, 0%, 100%);
+  --desktop-header-background: url('./assets/bg-desktop-light.jpg');
+  --mobile-header-background: url('./assets/bg-mobile-light.jpg');
 }
 
 :root.dark-theme {
-  --background-color: black;
   --body-background: hsl(235, 21%, 11%);
   --todo-background: hsl(235, 24%, 19%);
   --light-grayish-blue: hsl(234, 39%, 85%);
@@ -131,5 +134,7 @@ h6 {
   --dark-grayish-blue: hsl(234, 11%, 52%);
   --very-dark-grayish-blue: hsl(233, 14%, 35%);
   --very-dark-grayish-blue-hover: hsl(237, 14%, 26%);
+  --desktop-header-background: url('./assets/bg-desktop-dark.jpg');
+  --mobile-header-background: url('./assets/bg-mobile-dark.jpg');
 }
 </style>
